@@ -63,6 +63,12 @@ public class FXMLController {
 
     @FXML
     void completamentoAutomatico(ActionEvent event) {
+    	
+    	String matr = this.idMatricola.getText();
+    	String nome = this.modello.getNomeMatr(matr);
+    	String cognome = this.modello.getCognomeMatr(matr);
+    	this.idNome.setText(nome);
+    	this.idCognome.setText(cognome);
 
     }
 
