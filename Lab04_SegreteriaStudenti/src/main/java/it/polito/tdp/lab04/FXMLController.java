@@ -53,12 +53,37 @@ public class FXMLController {
 
     @FXML
     void cercaCorsi(ActionEvent event) {
+    	Corso corso = this.boxCorsi.getSelectionModel().getSelectedItem();
+    	String matricola = this.idMatricola.getText();
+    	if(corso == null) {
+        	if(matricola == null) {
+        		this.txtOutput.setText("Errore: non è presente questa matricola");
+        	}
+        	else {
+        		String res = this.modello.cercaCorsi(matricola);
+        		this.txtOutput.setText(res);
+        	}
+    	}
+    	else {
+    		boolean trovato = this.modello.isStudenteIscritto(matricola, corso);
+    		if(trovato) {
+    			this.txtOutput.setText("Studente già iscritto al corso");
+    		}
+    		else this.txtOutput.setText("Studente non ancora iscritto al corso");
+    	}
 
     }
 
     @FXML
-    void cercaIscrittoCorso(ActionEvent event) {
-
+    void cercaIscrittiCorso(ActionEvent event) {
+    	Corso corso = this.boxCorsi.getSelectionModel().getSelectedItem();
+    	if(corso==null) {
+    		this.txtOutput.setText("Errore: nessun corso selezionato");
+    	}
+    	else {
+    	String res = this.modello.getIscrittiCorso(corso);
+    	this.txtOutput.setText(res);
+    	}
     }
 
     @FXML
@@ -79,7 +104,11 @@ public class FXMLController {
 
     @FXML
     void reset(ActionEvent event) {
-
+    	this.txtOutput.clear();
+    	this.boxCorsi.getSelectionModel().clearSelection();
+    	this.idCognome.clear();
+    	this.idNome.clear();
+    	this.idMatricola.clear();
     }
 
     @FXML
@@ -99,7 +128,6 @@ public class FXMLController {
 
 	public void setModel(Model m) {
 		this.modello = m;
-		System.out.println(this.modello.getCorsi());
 		this.boxCorsi.getItems().addAll(this.modello.getCorsi());
 	}
 	

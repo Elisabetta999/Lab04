@@ -35,7 +35,7 @@
                   </ComboBox>
                </children>
             </HBox>
-            <Button fx:id="btnCercaIscritti" mnemonicParsing="false" onAction="#cercaIscrittoCorso" text="Cerca iscritto corso">
+            <Button fx:id="btnCercaIscritti" mnemonicParsing="false" onAction="#cercaIscrittiCorso" text="Cerca iscritti corso">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
